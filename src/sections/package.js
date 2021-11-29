@@ -1,7 +1,7 @@
 /** @jsx jsx */
+import { useState } from 'react';
 import { jsx, Container, Box, Flex } from 'theme-ui';
 import { keyframes } from '@emotion/core';
-import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import PriceCard from 'components/price-card';
 import ButtonGroup from 'components/button-group';
@@ -242,6 +242,23 @@ const responsive = {
 export default function Package() {
   const { monthly, annual } = packages;
 
+  const [currentPricingPlane, setCurrentPricingPlane] = useState({
+    active: 'monthly',
+    pricingPlane: monthly,
+  });
+
+  const handlePricingPlan = (plan) => {
+    plan === 'annual'
+      ? setCurrentPricingPlane({
+          active: 'annual',
+          pricingPlane: annual,
+        })
+      : setCurrentPricingPlane({
+          active: 'monthly',
+          pricingPlane: monthly,
+        });
+  };
+
   const sliderParams = {
     additionalTransfrom: 0,
     arrows: false,
@@ -266,7 +283,47 @@ export default function Package() {
   };
 
   return (
-    <h1>Package</h1>
+    <section id="pricing" sx={{ variant: 'section.pricing' }}>
+      <Container>
+        <SectionHeader
+          slogan="Pricing Plans"
+          title="Choose your pricing plan"
+        />
+        <Flex sx={styles.buttonGroup}>
+          <Box sx={styles.buttonGroupInner}>
+            <button
+              className={
+                currentPricingPlane.active === 'monthly' ? 'active' : ''
+              }
+              type="button"
+              aria-label="Monthly"
+              onClick={() => handlePricingPlan('monthly')}
+            >
+              Monthly Plan
+            </button>
+            <button
+              className={
+                currentPricingPlane.active === 'annual' ? 'active' : ''
+              }
+              type="button"
+              aria-label="Annual"
+              onClick={() => handlePricingPlan('annual')}
+            >
+              Annual Plan
+            </button>
+          </Box>
+        </Flex>
+        <Box sx={styles.pricingWrapper} className="pricing__wrapper">
+          <Carousel {...sliderParams}>
+            {currentPricingPlane.pricingPlane.map((packageData) => (
+              <Box sx={styles.pricingItem} key={packageData.id}>
+                <PriceCard data={packageData} />
+              </Box>
+            ))}
+          </Carousel>
+        </Box>
+      </Container>
+    </section>
   );
 }
 
