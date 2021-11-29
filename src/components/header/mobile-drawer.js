@@ -4,7 +4,12 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'components/drawer';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { Link } from 'react-scroll';
-import { FaFacebookF, FaTwitter, FaGithubAlt, FaDribbble } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaGithubAlt,
+  FaDribbble,
+} from 'react-icons/fa';
 import menuItems from './header.data';
 
 const social = [
@@ -27,10 +32,8 @@ const social = [
 ];
 
 export default function MobileDrawer() {
-  return (
-   <h1>Mobile Drawer</h1>
-  );
-};
+  return <Drawer></Drawer>;
+}
 
 const styles = {
   handler: {

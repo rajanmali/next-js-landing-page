@@ -9,7 +9,7 @@ export function NavLink({ path, label, children, ...rest }) {
 export function Link({ path, label, children, ...rest }) {
   return (
     <A href={path} {...rest}>
-      {!!children ? children : label}
+      {children ?? label}
     </A>
   );
 }
