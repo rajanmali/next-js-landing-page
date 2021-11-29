@@ -59,6 +59,7 @@ export default function MobileDrawer() {
                 offset={-70}
                 duration={500}
                 key={`mobile-${item.label}-${index}`}
+                onClick={() => setIsDrawerOpen(false)}
               >
                 {item.label}
               </Link>
@@ -90,6 +91,7 @@ const styles = {
     justifyContent: 'center',
     flexShrink: '0',
     width: '26px',
+    cursor: 'pointer',
 
     '@media screen and (min-width: 1024px)': {
       display: 'none',
