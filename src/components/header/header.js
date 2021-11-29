@@ -8,9 +8,7 @@ import MobileDrawer from './mobile-drawer';
 import menuItems from './header.data';
 
 export default function Header({ className }) {
-  return (
-      <h1>Header</h1>
-  );
+  return <header sx={styles.header} className={className}></header>;
 }
 
 const positionAnim = keyframes`
