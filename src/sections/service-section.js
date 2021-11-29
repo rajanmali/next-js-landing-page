@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 /** @jsx jsx */
-import { jsx, Container, Box, Grid, Text, Heading, Button, Image } from 'theme-ui';
+import {
+  jsx,
+  Container,
+  Box,
+  Grid,
+  Text,
+  Heading,
+  Button,
+  Image,
+} from 'theme-ui';
 import { keyframes } from '@emotion/core';
 import TextFeature from 'components/text-feature';
 import ModalVideo from 'react-modal-video';
@@ -36,8 +45,34 @@ const data = {
 };
 
 export default function ServiceSection() {
+  const handlePlay = (e) => {
+    e.preventDefault();
+
+    setVideoOpen(true);
+  };
   return (
-    <h1>Service Section</h1>
+    <section id="service" sx={{ variant: 'section.services' }}>
+      <Container sx={styles.containerBox}>
+        <Box sx={styles.thumbnail}>
+          <Image src={ServiceThumb} alt="thumbnail" />
+          <Button
+            sx={styles.videoBtn}
+            onClick={handlePlay}
+            aria-label="Play Button"
+          >
+            <span>
+              <IoIosPlay />
+            </span>
+          </Button>
+          <Box sx={styles.shapeBox}>
+            <Image src={shapePattern} alt="shape" />
+          </Box>
+        </Box>
+        <Box sx={styles.contentBox}>
+          <TextFeature subTitle={data.subTitle} title={data.title} />
+        </Box>
+      </Container>
+    </section>
   );
 }
 
